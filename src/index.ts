@@ -29,7 +29,9 @@ app.get('/scan', async (req, res) => {
     const result = await snykService.runSastScan(repoPath);
     res.send(`<pre>${result}</pre>`);
   } catch (error: any) {
-    res.status(500).send(`Erro ao executar a varredura SAST: ${error.message}`);
+    res.status(500).send({
+      message: `<p>Erro ao executar a varredura SAST: ${error.message}</p>`,
+    });
   }
 });
 
